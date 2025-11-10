@@ -6,39 +6,12 @@ import (
 )
 
 func main() {
-	ratings := make(map[string]types.RatingsAndReviews)
-	ratings["Ashish"] = types.RatingsAndReviews{
-		ProductDetails: types.Product{
-			ProductId:            1,
-			ProductName:          "Iphone",
-			ProductSpecForRating: "Camera",
-		},
-		Rating:   4,
-		Comments: []string{"Camera quality is better"},
-	}
-	ratings["Vignesh"] = types.RatingsAndReviews{
-		ProductDetails: types.Product{
-			ProductId:            1,
-			ProductName:          "Iphone",
-			ProductSpecForRating: "Camera",
-		},
-		Rating:   2,
-		Comments: []string{"Camera resolution is not good", "Camera quality compared to samsung latest series is poor"},
-	}
-	ratings["Akshat"] = types.RatingsAndReviews{
-		ProductDetails: types.Product{
-			ProductId:            2,
-			ProductName:          "MAC M4",
-			ProductSpecForRating: "Operating System",
-		},
-		Rating:   5,
-		Comments: []string{"Operating System is very fast"},
-	}
-	fmt.Println("---------ALL Ratings------------")
-	for custmerName, ratingInfo := range ratings {
-		fmt.Printf("-------Ratings done by customer %s----------\n", custmerName)
-		fmt.Printf("All info about ratings: %v\n", ratingInfo)
-		ratingInfo.PrintMessageBasedOnRatings()
-		ratingInfo.PrintStarsBasedOnRatings()
-	}
+	product1 := types.AddProductForRating(1, "Samsung", "Camera")
+	product2 := types.AddProductForRating(2, "Iphone", "Operating System")
+	product1.AddRating(1, 3, "Average camera quality")
+	product2.AddRating(2, 5, "Best OS")
+	product1.AddRating(1, 2, "Poor camera quality")
+	fmt.Println(product1.String())
+	fmt.Println(product2.String())
+
 }
